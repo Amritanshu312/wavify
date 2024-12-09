@@ -10,6 +10,9 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+  .max-w-screen-4xl {
+    max-width: 1536px;
+  }
 }
 
 @layer base {

@@ -22,19 +22,19 @@ export function Navbar() {
         <NavigationMenu className="flex justify-between max-w-full w-full">
           <NavigationMenuList>
             <NavigationMenuItem>
-              <Link href="/docs" legacyBehavior passHref>
+              <Link href="/" legacyBehavior passHref>
                 <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                   Home
                 </NavigationMenuLink>
               </Link>
 
-              <Link href="/docs" legacyBehavior passHref>
+              <Link href="/explore" legacyBehavior passHref>
                 <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                   Explore
                 </NavigationMenuLink>
               </Link>
 
-              <Link href="/docs" legacyBehavior passHref>
+              <Link href="/about" legacyBehavior passHref>
                 <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                   About Me
                 </NavigationMenuLink>
@@ -42,13 +42,13 @@ export function Navbar() {
             </NavigationMenuItem>
 
             <NavigationMenuItem>
-              <Link href="/docs" legacyBehavior passHref>
+              <Link href="/messages" legacyBehavior passHref>
                 <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                   Messages
                 </NavigationMenuLink>
               </Link>
 
-              <Link href="/docs" legacyBehavior passHref>
+              <Link href="/settings" legacyBehavior passHref>
                 <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                   Settings
                 </NavigationMenuLink>
