@@ -11,8 +11,11 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { useToast } from "@/hooks/use-toast";
 
 const ImageUpload = () => {
+  const { toast } = useToast();
+
   const [ImagePreview, setImagePreview] = useState("");
   const [files, setFiles] = useState<File | null>(null);
   console.log(files);
@@ -27,9 +30,7 @@ const ImageUpload = () => {
       const newFiles = Array.from(droppedFiles);
       const file = newFiles[0];
 
-      // Check if the file is a valid image
-      const validImageTypes = ["image/jpeg", "image/png", "image/gif"];
-      if (validImageTypes.includes(file.type)) {
+      if (file) {
         setFiles(file);
         previewImage(file);
       } else {
@@ -67,9 +68,7 @@ const ImageUpload = () => {
       <div className="flex flex-col space-y-4">
         <Label
           htmlFor="image-upload"
-          className={
-            "border-2 border-dashed border-zinc-200 rounded-lg p-4 dark:border-zinc-800"
-          }
+          className="border-2 border-dashed border-zinc-200 rounded-lg p-4 dark:border-zinc-800"
         >
           <div className="flex h-28 select-none items-center justify-center space-x-2">
             <FiUpload size={18} className="text-zinc-500 dark:text-zinc-400" />
