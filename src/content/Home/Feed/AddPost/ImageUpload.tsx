@@ -11,11 +11,9 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { useToast } from "@/hooks/use-toast";
+import { IsImageCheck } from "@/utils/ImageValidation";
 
 const ImageUpload = () => {
-  const { toast } = useToast();
-
   const [ImagePreview, setImagePreview] = useState("");
   const [files, setFiles] = useState<File | null>(null);
   console.log(files);
@@ -29,8 +27,11 @@ const ImageUpload = () => {
     if (droppedFiles.length > 0) {
       const newFiles = Array.from(droppedFiles);
       const file = newFiles[0];
+      if (!file) return;
 
-      if (file) {
+      const checkImage = IsImageCheck(file);
+
+      if (file && checkImage) {
         setFiles(file);
         previewImage(file);
       } else {
@@ -42,8 +43,13 @@ const ImageUpload = () => {
   const handleChangeUpload = (
     changeevent: React.ChangeEvent<HTMLInputElement>
   ): void => {
-    const file = changeevent.target.files?.[0];
-    if (file) {
+    const file = changeevent.target.files?.[0] ?? null;
+
+    if (!file) return;
+
+    const checkImage = IsImageCheck(file);
+
+    if (file && checkImage) {
       setFiles(file);
       previewImage(file);
     }

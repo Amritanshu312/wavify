@@ -1,6 +1,8 @@
+import { toast } from "react-toastify";
+
 export const IsImageCheck = (file: File | null): boolean => {
   if (!file) {
-    console.error("No file provided.");
+    toast("No file provided.")
     return false;
   }
 
@@ -9,24 +11,22 @@ export const IsImageCheck = (file: File | null): boolean => {
 
   // Check if the file type is valid
   if (!validImageTypes.some((type) => file.type.includes(type))) {
-    console.error("Invalid file type. Please upload a JPEG, PNG, or GIF image.");
+    toast("Invalid file type. Please upload a JPEG, PNG, or GIF image.");
     return false;
   }
 
   // Check if the file size is within the limit
   if (file.size > maxFileSize) {
-    console.error("File is too large. Please upload an image smaller than 5MB.");
+    toast("File is too large. Please upload an image smaller than 5MB.");
     return false;
   }
 
   // Check if the file is not empty
   if (file.size === 0) {
-    console.error("File is empty.");
+    toast("File is empty.");
     return false;
   }
 
-  // If all checks pass
-  console.log("File is a valid image.");
   return true;
 };
 
