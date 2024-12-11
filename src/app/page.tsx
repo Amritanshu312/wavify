@@ -3,6 +3,7 @@ import MaxWidthWrapper from "@/components/shared/max-width-wrapper";
 import ProfileHighlight from "@/content/Home/User/ProfileHighlight";
 import Post from "@/content/Home/Feed/AddPost/Post";
 import { Separator } from "@/components/ui/separator";
+import Feeds from "@/content/Home/Feed/Feeds";
 
 export default function Home() {
   return (
@@ -17,6 +18,7 @@ export default function Home() {
 
         <div className="w-full max-w-[52rem]">
           <Post />
+          <Feeds />
         </div>
       </MaxWidthWrapper>
     </div>
