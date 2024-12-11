@@ -11,7 +11,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { IsImageCheck } from "@/utils/ImageValidation";
+import { IsImageCheck } from "@/utils/FileValidation";
 
 const ImageUpload = () => {
   const [ImagePreview, setImagePreview] = useState("");
@@ -31,11 +31,9 @@ const ImageUpload = () => {
 
       const checkImage = IsImageCheck(file);
 
-      if (file && checkImage) {
+      if (checkImage && file) {
         setFiles(file);
         previewImage(file);
-      } else {
-        alert("Please upload a valid image file (JPEG, PNG, GIF).");
       }
     }
   };

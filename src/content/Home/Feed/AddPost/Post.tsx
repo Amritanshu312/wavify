@@ -13,6 +13,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import ImageUpload from "./ImageUpload";
+import VideoUpload from "./VideoUpload";
 const Post = () => {
   return (
     <Card className="px-8 py-4">
@@ -48,7 +49,7 @@ const Post = () => {
         </TabsContent>
 
         <TabsContent value="video">
-          <div>password</div>
+          <VideoUpload />
         </TabsContent>
       </Tabs>
 
