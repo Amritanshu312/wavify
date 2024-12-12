@@ -14,7 +14,11 @@ import {
 } from "@/components/ui/select";
 import ImageUpload from "./ImageUpload";
 import VideoUpload from "./VideoUpload";
+import { useState } from "react";
 const Post = () => {
+  const [userValue, setUserValue] = useState<string>("");
+  // const betterValue = userValue.replace(/\n+/g, "\n");
+
   return (
     <Card className="px-8 py-4">
       <div className="flex gap-6 items-center">
@@ -27,7 +31,7 @@ const Post = () => {
           placeholder="What's on your mind ? Amritnashu"
           rows={4}
           className="resize-none"
-          onChange={e => console.log(e.target.value)}
+          onChange={(e) => setUserValue(e.target.value)}
         />
       </div>
 

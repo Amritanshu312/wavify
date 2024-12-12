@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { IoClose } from "react-icons/io5";
 import { FiUpload } from "react-icons/fi";
 import {
@@ -16,7 +16,21 @@ import { IsImageCheck } from "@/utils/FileValidation";
 const ImageUpload = () => {
   const [ImagePreview, setImagePreview] = useState("");
   const [files, setFiles] = useState<File | null>(null);
-  console.log(files);
+
+  useEffect(() => {
+    if (files) {
+      const image = new window.Image();
+      const objectUrl = URL.createObjectURL(files);
+      image.onload = () => {
+        console.log("Image Width:", image.width);
+        console.log("Image Height:", image.height);
+
+        // Clean up the object URL after loading
+        URL.revokeObjectURL(objectUrl);
+      };
+      image.src = objectUrl;
+    }
+  }, [files]);
 
   const handleDragUpload = (
     dragevent: React.DragEvent<HTMLDivElement>
