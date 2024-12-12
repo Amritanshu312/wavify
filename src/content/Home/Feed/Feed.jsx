@@ -1,18 +1,19 @@
+"use client"
+
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import {
   Avatar,
   AvatarFallback,
   AvatarImage,
 } from "@/components/ui/avatar"
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
+import { MdMoreHoriz } from "react-icons/md";
 
 const Feed = () => {
   return (
     <Card className="w-full">
-      <CardHeader>
+      <CardHeader className="flex-row items-center justify-between">
 
         <div className="flex gap-4 items-center">
 
@@ -32,37 +33,31 @@ const Feed = () => {
         </div>
 
         <div>
-
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild >
+              <Button variant={"ghost"}><MdMoreHoriz /></Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent>
+              <DropdownMenuLabel>Post Manuplation</DropdownMenuLabel>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem>Edit</DropdownMenuItem>
+              <DropdownMenuItem>Delete</DropdownMenuItem>
+              <DropdownMenuItem>Visibility</DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
         </div>
       </CardHeader>
+
       <CardContent>
-        <form>
-          <div className="grid w-full items-center gap-4">
-            <div className="flex flex-col space-y-1.5">
-              <Label htmlFor="name">Name</Label>
-              <Input id="name" placeholder="Name of your project" />
-            </div>
-            <div className="flex flex-col space-y-1.5">
-              <Label htmlFor="framework">Framework</Label>
-              <Select>
-                <SelectTrigger id="framework">
-                  <SelectValue placeholder="Select" />
-                </SelectTrigger>
-                <SelectContent position="popper">
-                  <SelectItem value="next">Next.js</SelectItem>
-                  <SelectItem value="sveltekit">SvelteKit</SelectItem>
-                  <SelectItem value="astro">Astro</SelectItem>
-                  <SelectItem value="nuxt">Nuxt.js</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-          </div>
-        </form>
+        <p className="leading-7 [&:not(:first-child)]:mt-6">
+          The king, seeing how much happier his subjects were, realized the error ofThe king, seeing how much happier his subjects were, realized the error ofThe king, seeing how much happier his subjects were, realized the error of
+        </p>
       </CardContent>
-      <CardFooter className="flex justify-between">
+
+      {/* <CardFooter className="flex justify-between">
         <Button variant="outline">Cancel</Button>
         <Button>Deploy</Button>
-      </CardFooter>
+      </CardFooter> */}
     </Card>
   )
 }

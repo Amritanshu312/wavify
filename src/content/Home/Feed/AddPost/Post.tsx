@@ -27,6 +27,7 @@ const Post = () => {
           placeholder="What's on your mind ? Amritnashu"
           rows={4}
           className="resize-none"
+          onChange={e => console.log(e.target.value)}
         />
       </div>
 
