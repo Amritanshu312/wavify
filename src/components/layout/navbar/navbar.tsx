@@ -13,7 +13,8 @@ import {
 } from "@/components/ui/navigation-menu";
 import MaxWidthWrapper from "../../shared/max-width-wrapper";
 
-import { LoginModal } from "./LoginModal";
+import { LoginModal } from "../../shared/LoginModal";
+import { LuLogIn } from "react-icons/lu";
 
 export function Navbar() {
   return (
@@ -56,7 +57,7 @@ export function Navbar() {
             </NavigationMenuItem>
           </NavigationMenuList>
 
-          <LoginModal />
+          <LoginModal icon={<LuLogIn size={16} />} title="Sign In" />
         </NavigationMenu>
       </MaxWidthWrapper>
     </header>

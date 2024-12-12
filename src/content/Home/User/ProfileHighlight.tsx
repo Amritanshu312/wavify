@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/card";
 
 const ProfileHighlight = () => {
-  const isLoggedIn: boolean = true;
+  const isLoggedIn: boolean = false;
 
   return isLoggedIn ? (
     <Card className="w-[350px]">

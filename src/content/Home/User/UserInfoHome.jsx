@@ -14,7 +14,7 @@ import { LuCalendarCheck2 } from "react-icons/lu";
 import { Badge } from "@/components/ui/badge";
 
 const UserInfoHome = () => {
-  const isLoggedIn = true;
+  const isLoggedIn = false;
   return isLoggedIn ? (
     <Card className="max-w-[350px]">
       <CardHeader className="relative p-1">

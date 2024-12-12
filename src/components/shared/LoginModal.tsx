@@ -8,15 +8,19 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 
-import { LuLogIn } from "react-icons/lu";
+import { ReactNode } from "react";
+type LoginModalProps = {
+  icon: ReactNode; // Replace 'any' with a specific type if possible
+  title: string;
+};
 
-export function LoginModal() {
+export function LoginModal({ icon, title }: LoginModalProps) {
   return (
     <Dialog>
       <DialogTrigger asChild>
         <Button variant="ghost">
-          <LuLogIn size={16} />
-          Sign In
+          {icon}
+          {title}
         </Button>
       </DialogTrigger>
 
