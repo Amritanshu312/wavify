@@ -57,7 +57,11 @@ export function Navbar() {
             </NavigationMenuItem>
           </NavigationMenuList>
 
-          <LoginModal icon={<LuLogIn size={16} />} title="Sign In" />
+          <LoginModal
+            icon={<LuLogIn size={16} />}
+            title="Sign In"
+            varient="ghost"
+          />
         </NavigationMenu>
       </MaxWidthWrapper>
     </header>

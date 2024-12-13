@@ -3,7 +3,6 @@ import { FaBolt } from "react-icons/fa6";
 import { PiGlobeLight } from "react-icons/pi";
 import { LuTrendingUp } from "react-icons/lu";
 
-import { Button } from "@/components/ui/button"
 import {
   Card,
   CardContent,
@@ -12,6 +11,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
+import { LoginModal } from "@/components/shared/LoginModal";
 
 
 const DiscoverWavify = () => {
@@ -42,7 +42,7 @@ const DiscoverWavify = () => {
       </CardContent>
 
       <CardFooter className="flex justify-between">
-        <Button variant="outline" className="w-full">Log In To Post</Button>
+        <LoginModal title="Log In To Post" varient="outline" />
       </CardFooter>
     </Card>
   )

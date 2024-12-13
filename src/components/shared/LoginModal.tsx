@@ -10,15 +10,26 @@ import {
 
 import { ReactNode } from "react";
 type LoginModalProps = {
-  icon: ReactNode; // Replace 'any' with a specific type if possible
+  icon: ReactNode | null;
   title: string;
+  varient:
+    | "link"
+    | "default"
+    | "ghost"
+    | "destructive"
+    | "outline"
+    | "secondary";
 };
 
-export function LoginModal({ icon, title }: LoginModalProps) {
+export function LoginModal({
+  icon,
+  title,
+  varient = "ghost",
+}: LoginModalProps) {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="ghost">
+        <Button variant={varient}>
           {icon}
           {title}
         </Button>
