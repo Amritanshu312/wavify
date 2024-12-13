@@ -1,3 +1,4 @@
+"use client"
 import { MdMarkEmailRead, MdOutlineDone } from "react-icons/md";
 
 import { Button } from "@/components/ui/button";
@@ -12,10 +13,12 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { FaArtstation } from "react-icons/fa6";
 import { LuCalendarCheck2 } from "react-icons/lu";
 import { Badge } from "@/components/ui/badge";
+import { useUserInfoContext } from "@/context/userInfoContext";
 
 const UserInfoHome = () => {
-  const isLoggedIn = false;
-  return isLoggedIn ? (
+  const { isUserLoggedIn } = useUserInfoContext();
+
+  return isUserLoggedIn ? (
     <Card className="max-w-[350px]">
       <CardHeader className="relative p-1">
         <Image

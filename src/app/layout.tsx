@@ -6,6 +6,7 @@ import { Navbar } from "@/components/layout/navbar/navbar";
 import { Toaster } from "@/components/ui/toaster";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { UserInfoState } from "@/context/userInfoContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -28,12 +29,13 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <Navbar />
-          {children}
+          <UserInfoState>
+            <Navbar />
+            {children}
+          </UserInfoState>
 
           <Toaster />
           <ToastContainer draggable theme="dark" />
-          
         </ThemeProvider>
       </body>
     </html>

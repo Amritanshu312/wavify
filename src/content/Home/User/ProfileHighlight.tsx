@@ -1,3 +1,5 @@
+"use client";
+import { useUserInfoContext } from "@/context/userInfoContext";
 import WhyJoinWavify from "./WhyJoinWavify";
 import {
   Card,
@@ -8,9 +10,9 @@ import {
 } from "@/components/ui/card";
 
 const ProfileHighlight = () => {
-  const isLoggedIn: boolean = false;
+  const { isUserLoggedIn } = useUserInfoContext();
 
-  return isLoggedIn ? (
+  return isUserLoggedIn ? (
     <Card className="w-[350px]">
       <CardHeader>
         <CardTitle>Profile Highlight</CardTitle>

@@ -15,9 +15,11 @@ import {
   GithubAuthProvider,
   GoogleAuthProvider,
   signInWithPopup,
+  getAdditionalUserInfo,
 } from "firebase/auth";
 import { auth } from "@/config/firebase";
 import { toast } from "react-toastify";
+import { createNewUserProfile } from "@/utils/NewUserHandling";
 type LoginModalProps = {
   icon: ReactNode | null;
   title: string;
@@ -46,7 +48,25 @@ export function LoginModal({
     }
     if (socialProvider) {
       try {
-        await signInWithPopup(auth, socialProvider);
+        const data = await signInWithPopup(auth, socialProvider);
+        if (data) {
+          const isNewUser = getAdditionalUserInfo(data)?.isNewUser;
+
+          if (isNewUser) {
+            const { displayName, email, photoURL, emailVerified, uid } =
+              data?.user;
+
+            if (displayName && email) {
+              createNewUserProfile({
+                displayName,
+                email,
+                emailVerified,
+                uid,
+                photoURL: photoURL ?? "",
+              });
+            }
+          }
+        } else toast("some unknown error occured.");
       } catch (err) {
         console.error(err);
       }
