@@ -1,12 +1,8 @@
-"use client"
+"use client";
 import { MdMarkEmailRead, MdOutlineDone } from "react-icons/md";
 
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import DiscoverWavify from "./DiscoverWavify";
 import Image from "next/image";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -16,7 +12,7 @@ import { Badge } from "@/components/ui/badge";
 import { useUserInfoContext } from "@/context/userInfoContext";
 
 const UserInfoHome = () => {
-  const { isUserLoggedIn } = useUserInfoContext();
+  const { isUserLoggedIn, userInfo } = useUserInfoContext();
 
   return isUserLoggedIn ? (
     <Card className="max-w-[350px]">
@@ -39,7 +35,7 @@ const UserInfoHome = () => {
       <CardContent className="mt-6">
         <div>
           <h3 className="scroll-m-20 text-2xl font-semibold tracking-tight">
-            John Siu
+            {userInfo?.name}
           </h3>
 
           <p className="text-sm text-muted-foreground">@godoftheworld</p>
@@ -47,41 +43,44 @@ const UserInfoHome = () => {
 
         <div className="mt-4">
           <p className="text-sm leading-4">
-            Full-stack developer, open source enthusiast, and coffee lover.
-            Building the future, one line of code at a time.
+            {userInfo?.description}
           </p>
 
           <div className="mt-4 flex flex-col gap-2">
             <div className="flex gap-2 items-center text-muted-foreground text-[15px]">
               <FaArtstation size={17} />
               <Badge variant="secondary" className="w-max">
-                Ye tihs is kind
+                {userInfo?.shortTitle}
               </Badge>
             </div>
 
             <div className="flex gap-2 items-center text-muted-foreground text-[15px]">
               <MdMarkEmailRead size={18} />
-              <span>god@gmail.com</span>
-              <Badge variant="secondary">
-                <MdOutlineDone />
-              </Badge>
+              <span>{userInfo?.email}</span>
+
+              {userInfo?.emailVerified &&
+                <Badge variant="secondary">
+                  <MdOutlineDone />
+                </Badge>}
             </div>
             <div className="flex gap-2 items-center text-muted-foreground text-[15px]">
-              <LuCalendarCheck2 size={18} /> <span>Joined September 2010</span>
+              <LuCalendarCheck2 size={18} /> <span>{formatJoinDate(userInfo?.createdAt)}</span>
             </div>
           </div>
 
           <div className="mt-4 flex justify-between pr-8">
             <div className="text-[15px] text-muted-foreground font-medium">
-              <span className="text-foreground">30</span> Followers
+              <span className="text-foreground">{userInfo?.followers}</span> Followers
             </div>
 
             <div className="text-[15px] text-muted-foreground">
-              <span className="text-foreground">60</span> Following
+              <span className="text-foreground">{userInfo?.following}</span> Following
             </div>
           </div>
 
-          <Button variant={"outline"} className="w-full text-center mt-4">Edit Profile</Button>
+          <Button variant={"outline"} className="w-full text-center mt-4">
+            Edit Profile
+          </Button>
         </div>
       </CardContent>
     </Card>
@@ -89,5 +88,23 @@ const UserInfoHome = () => {
     <DiscoverWavify />
   );
 };
+
+const formatJoinDate = (timestamp) => {
+  try {
+    if (!timestamp || typeof timestamp.seconds !== "number" || typeof timestamp.nanoseconds !== "number") {
+      throw new Error("Invalid timestamp object");
+    }
+
+    const milliseconds = timestamp.seconds * 1000 + timestamp.nanoseconds / 1e6;
+    const date = new Date(milliseconds);
+    const options = { year: "numeric", month: "long" };
+    return `Joined ${date.toLocaleDateString("en-US", options)}`;
+  } catch (error) {
+    console.error("Invalid timestamp format:", error);
+    return "Invalid date";
+  }
+};
+
+
 
 export default UserInfoHome;
