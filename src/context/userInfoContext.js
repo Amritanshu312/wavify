@@ -8,8 +8,6 @@ export const userContext = createContext();
 
 const ENCRYPTION_KEY = process.env.ENCRYPTION_KEY
 
-console.log(ENCRYPTION_KEY);
-
 const encryptData = (data) => {
   try {
     return CryptoJS.AES.encrypt(data, ENCRYPTION_KEY).toString();
@@ -70,7 +68,6 @@ export const UserInfoState = ({ children }) => {
       }
     }
 
-    setLoading(true);
     const unsubscribe = auth.onAuthStateChanged(async (user) => {
       if (user?.uid) {
         setIsUserLoggedIn(true)
