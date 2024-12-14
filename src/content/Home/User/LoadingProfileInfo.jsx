@@ -7,7 +7,6 @@ const LoadingProfileInfo = () => {
     <Card className="max-w-[350px] flex flex-col p-4 space-y-3 relative">
       <div className="relative">
         <Skeleton className="h-[100px] w-full rounded-xl" />
-        <Skeleton className="absolute w-12 h-12 rounded-full bottom-0 translate-y-1/2 left-6" />
       </div>
       <div className="space-y-3 !mt-8">
         <Skeleton className="h-4 w-[250px]" />

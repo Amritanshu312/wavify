@@ -8,37 +8,46 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import LoadingProfileHighlight from "./LoadingProfileHighlight";
 
 const ProfileHighlight = () => {
-  const { isUserLoggedIn, userInfo } = useUserInfoContext();
+  const {
+    isUserLoggedIn,
+    userInfo,
+    loading: isUserInfoLoading,
+  } = useUserInfoContext();
 
-  return isUserLoggedIn ? (
-    <Card className="w-[350px]">
-      <CardHeader>
-        <CardTitle>Profile Highlight</CardTitle>
-        <CardDescription>Some Highlights of you profile.</CardDescription>
-      </CardHeader>
-      <CardContent className="flex flex-col gap-4">
-        <div className="flex flex-col gap-2">
-          <div className="text-sm font-semibold text-muted-foreground">
-            Your Total Posts
+  return !isUserInfoLoading ? (
+    isUserLoggedIn ? (
+      <Card className="w-[350px]">
+        <CardHeader>
+          <CardTitle>Profile Highlight</CardTitle>
+          <CardDescription>Some Highlights of you profile.</CardDescription>
+        </CardHeader>
+        <CardContent className="flex flex-col gap-4">
+          <div className="flex flex-col gap-2">
+            <div className="text-sm font-semibold text-muted-foreground">
+              Your Total Posts
+            </div>
+            <small className="text-base font-medium leading-none">
+              {userInfo?.posts}
+            </small>
           </div>
-          <small className="text-base font-medium leading-none">
-            {userInfo?.posts}
-          </small>
-        </div>
-        <div className="flex flex-col gap-2">
-          <div className="text-sm font-semibold text-muted-foreground">
-            Total Share
+          <div className="flex flex-col gap-2">
+            <div className="text-sm font-semibold text-muted-foreground">
+              Total Share
+            </div>
+            <small className="text-base font-medium leading-none">
+              {userInfo?.shares}
+            </small>
           </div>
-          <small className="text-base font-medium leading-none">
-            {userInfo?.shares}
-          </small>
-        </div>
-      </CardContent>
-    </Card>
+        </CardContent>
+      </Card>
+    ) : (
+      <WhyJoinWavify />
+    )
   ) : (
-    <WhyJoinWavify />
+    <LoadingProfileHighlight />
   );
 };
 
