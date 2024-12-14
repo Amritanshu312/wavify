@@ -19,6 +19,7 @@ const Post = () => {
   const [userValue, setUserValue] = useState<string>("");
   // const betterValue = userValue.replace(/\n+/g, "\n");
 
+
   return (
     <Card className="px-8 py-4">
       <div className="flex gap-6 items-center">

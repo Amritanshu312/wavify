@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/card";
 
 const ProfileHighlight = () => {
-  const { isUserLoggedIn } = useUserInfoContext();
+  const { isUserLoggedIn, userInfo } = useUserInfoContext();
 
   return isUserLoggedIn ? (
     <Card className="w-[350px]">
@@ -23,13 +23,17 @@ const ProfileHighlight = () => {
           <div className="text-sm font-semibold text-muted-foreground">
             Your Total Posts
           </div>
-          <small className="text-base font-medium leading-none">30</small>
+          <small className="text-base font-medium leading-none">
+            {userInfo?.posts}
+          </small>
         </div>
         <div className="flex flex-col gap-2">
           <div className="text-sm font-semibold text-muted-foreground">
             Total Share
           </div>
-          <small className="text-base font-medium leading-none">50</small>
+          <small className="text-base font-medium leading-none">
+            {userInfo?.shares}
+          </small>
         </div>
       </CardContent>
     </Card>

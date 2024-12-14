@@ -26,8 +26,8 @@ const UserInfoHome = () => {
         />
         <Avatar className="absolute bottom-4 left-8 transform translate-y-1/2 w-16 h-16 border-[4px] border-zinc-800">
           <AvatarImage
-            src="https://plus.unsplash.com/premium_photo-1701590725747-ac131d4dcffd?q=80&w=1931&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            alt="John Doe"
+            src={userInfo?.photo}
+            alt={userInfo?.name}
           />
           <AvatarFallback>A</AvatarFallback>
         </Avatar>
@@ -50,7 +50,7 @@ const UserInfoHome = () => {
             <div className="flex gap-2 items-center text-muted-foreground text-[15px]">
               <FaArtstation size={17} />
               <Badge variant="secondary" className="w-max">
-                {userInfo?.shortTitle}
+                {userInfo?.shortTitle || "Add Your Title Here"}
               </Badge>
             </div>
 
