@@ -4,6 +4,7 @@ import { doc, getDoc } from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth, db } from "@/config/firebase";
 import CryptoJS from "crypto-js";
+import { Spinner } from "@/components/shared/Loading";
 
 // Ensure encryption key is defined and accessible
 const ENCRYPTION_KEY = process.env.NEXT_PUBLIC_ENCRYPTION_KEY || 'fallback-secret-key';
@@ -43,7 +44,7 @@ export const UserInfoProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
 
-  console.log({isUserLoggedIn, loading});
+  console.log({ isUserLoggedIn, loading });
 
   const fetchUserData = async (uid) => {
     try {
@@ -132,6 +133,8 @@ export const UserInfoProvider = ({ children }) => {
   return (
     <UserContext.Provider value={contextValue}>
       {children}
+
+      {loading && <Spinner size="md" />}
     </UserContext.Provider>
   );
 };
