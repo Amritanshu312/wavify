@@ -15,10 +15,34 @@ import {
 import ImageUpload from "./ImageUpload";
 import VideoUpload from "./VideoUpload";
 import { useState } from "react";
+import { toast } from "react-toastify";
 const Post = () => {
   const [userValue, setUserValue] = useState<string>("");
-  // const betterValue = userValue.replace(/\n+/g, "\n");
+  console.log(userValue);
+  const applyFixes = (value: string): string => {
+    try {
+      return value
+        .replace(/\n+/g, "\n")
+        .trim()
+        .replace(/\s+/g, " ")
+        .replace(/[^a-zA-Z0-9 .,!?\n]/g, "")
+        .slice(0, 200);
+    } catch (error) {
+      console.error(error);
+      toast.error("An error occurred while processing your input.");
+      return "";
+    }
+  };
 
+  const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const rawValue = e.target.value;
+    if (rawValue.length > 200) {
+      toast.warn(
+        "Character limit exceeded! Only the first 200 characters are allowed."
+      );
+    }
+    setUserValue(applyFixes(rawValue));
+  };
 
   return (
     <Card className="px-8 py-4">
@@ -32,7 +56,7 @@ const Post = () => {
           placeholder="What's on your mind ? Amritnashu"
           rows={4}
           className="resize-none"
-          onChange={(e) => setUserValue(e.target.value)}
+          onChange={handleChange}
         />
       </div>
 
