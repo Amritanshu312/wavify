@@ -15,8 +15,12 @@ import MaxWidthWrapper from "../../shared/max-width-wrapper";
 
 import { LoginModal } from "../../shared/LoginModal";
 import { LuLogIn } from "react-icons/lu";
+import { useUserInfoContext } from "@/context/userInfoContext";
+import Profile from "./profile";
 
 export function Navbar() {
+  const { userInfo, isUserLoggedIn } = useUserInfoContext();
+
   return (
     <header className="w-full flex justify-center h-14 py-4">
       <MaxWidthWrapper>
@@ -57,11 +61,18 @@ export function Navbar() {
             </NavigationMenuItem>
           </NavigationMenuList>
 
-          <LoginModal
-            icon={<LuLogIn size={16} />}
-            title="Sign In"
-            varient="ghost"
-          />
+          {!isUserLoggedIn ? (
+            <LoginModal
+              icon={<LuLogIn size={16} />}
+              title="Sign In"
+              varient="ghost"
+            />
+          ) : (
+            userInfo && (
+              <Profile isUserLoggedIn={isUserLoggedIn} userInfo={userInfo} />
+            )
+          )}
+          
         </NavigationMenu>
       </MaxWidthWrapper>
     </header>

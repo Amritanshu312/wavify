@@ -118,6 +118,7 @@ export const UserInfoProvider = ({ children }) => {
       // Cleanup subscription on unmount
       return () => unsubscribe();
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Memoize the context value
