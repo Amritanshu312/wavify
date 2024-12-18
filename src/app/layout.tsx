@@ -35,7 +35,7 @@ export default function RootLayout({
           </UserInfoProvider>
 
           <Toaster />
-          <ToastContainer draggable theme="dark" />
+          <ToastContainer draggable theme="dark" autoClose={600000} />
         </ThemeProvider>
       </body>
     </html>

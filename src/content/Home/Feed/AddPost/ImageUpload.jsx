@@ -15,7 +15,7 @@ import { IsImageCheck } from "@/utils/FileValidation";
 
 const ImageUpload = () => {
   const [ImagePreview, setImagePreview] = useState("");
-  const [files, setFiles] = useState<File | null>(null);
+  const [files, setFiles] = useState(null);
 
   useEffect(() => {
     if (files) {
@@ -33,8 +33,7 @@ const ImageUpload = () => {
   }, [files]);
 
   const handleDragUpload = (
-    dragevent: React.DragEvent<HTMLDivElement>
-  ): void => {
+    dragevent) => {
     dragevent.preventDefault();
 
     const droppedFiles = dragevent.dataTransfer.files;
@@ -53,8 +52,7 @@ const ImageUpload = () => {
   };
 
   const handleChangeUpload = (
-    changeevent: React.ChangeEvent<HTMLInputElement>
-  ): void => {
+    changeevent) => {
     const file = changeevent.target.files?.[0] ?? null;
 
     if (!file) return;
@@ -67,11 +65,11 @@ const ImageUpload = () => {
     }
   };
 
-  const previewImage = (file: File | null) => {
+  const previewImage = (file) => {
     if (file) {
       const reader = new FileReader();
       reader.onloadend = () => {
-        setImagePreview(reader.result as string);
+        setImagePreview(reader.result);
       };
       reader.readAsDataURL(file);
     }

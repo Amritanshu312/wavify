@@ -13,8 +13,8 @@ import {
 import { IsVideoCheck } from "@/utils/FileValidation";
 
 const VideoUpload = () => {
-  const [VideoPreview, setVideoPreview] = useState<string | null>("");
-  const [files, setFiles] = useState<File | null>(null);
+  const [VideoPreview, setVideoPreview] = useState("");
+  const [files, setFiles] = useState(null);
 
   console.log(files, VideoPreview);
 
@@ -33,8 +33,7 @@ const VideoUpload = () => {
   }, [files]);
 
   const handleDragUpload = (
-    dragevent: React.DragEvent<HTMLDivElement>
-  ): void => {
+    dragevent) => {
     dragevent.preventDefault();
 
     const droppedFiles = dragevent.dataTransfer.files;
@@ -52,8 +51,8 @@ const VideoUpload = () => {
   };
 
   const handleChangeUpload = (
-    changeevent: React.ChangeEvent<HTMLInputElement>
-  ): void => {
+    changeevent
+  ) => {
     const file = changeevent.target.files?.[0] ?? null;
 
     if (!file) return;
